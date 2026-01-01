@@ -1,31 +1,53 @@
-arr = [float('-inf'), 1, 4, 2, 7, 7, 5, float('inf')]
+class Solution:
 
-if len(arr) == 1:
-    print(-1)
-    exit
+    def __init__(self, arr) -> None:
+        self.arr = arr
 
-largest = arr[0]
-sec_largest = -float('inf')
+    def second_largest_solution(self):
+        if len(self.arr) == 1:
+            return -1
+        
+        largest = self.arr[0]
+        sec_largest = -float('inf')
 
-for i in range(len(arr)):
-    if arr[i] > largest:
-        sec_largest = largest
-        largest = arr[i]
-    elif arr[i] > sec_largest and largest!=arr[i]:
-        sec_largest = arr[i]
+        for i in range(len(self.arr)):
+            if self.arr[i] > largest:
+                sec_largest = largest
+                largest = self.arr[i]
+            elif self.arr[i] > sec_largest and largest!=self.arr[i]:
+                sec_largest = self.arr[i]
 
-print("Largest: ", largest)
-print("Second Largest: ", sec_largest)
+        print("Largest: ", largest)
+        print("Second Largest: ", sec_largest)
 
-smallest = float('inf')
-sec_smallest = float('inf')
+        return sec_largest
 
-for i in range(len(arr)):
-    if arr[i] < smallest:
-        sec_smallest = smallest
-        smallest = arr[i]
-    elif arr[i] < sec_smallest and smallest!=arr[i]:
-        sec_smallest = arr[i]
+    def second_smallest_solution(self, arr):
 
-print("Smallest: ", smallest)
-print("Second Smallest: ", sec_smallest)
+        if len(arr) == 1:
+            return -1
+        
+        smallest = float('inf')
+        sec_smallest = float('inf')
+
+        for i in range(len(arr)):
+            if arr[i] < smallest:
+                sec_smallest = smallest
+                smallest = arr[i]
+            elif arr[i] < sec_smallest and smallest!=arr[i]:
+                sec_smallest = arr[i]
+
+        print("Smallest: ", smallest)
+        print("Second Smallest: ", sec_smallest)
+
+        return sec_smallest
+
+arr_test = [float('-inf'), 1, 4, 2, 7, 7, 5, float('inf')]
+
+test_solution = Solution(arr_test)
+
+print("Test Array Second Largest: ", test_solution.second_largest_solution())
+
+user_input_array = list(map(float, input("Enter the Array: ").split()))
+
+print("User Input Second Smallest: ", test_solution.second_smallest_solution(user_input_array))
